@@ -1,0 +1,38 @@
+<app-header-registrar></app-header-registrar>
+<form [formGroup]="professionalForm" (ngSubmit)="onSubmit()">
+  <label for="FirstName">First Name:</label>
+  <input id="FirstName" formControlName="FirstName" type="text" />
+
+  <label for="LastName">Last Name:</label>
+  <input id="LastName" formControlName="LastName" type="text" />
+
+  <label for="EmailAddress">Email Address:</label>
+  <input id="EmailAddress" formControlName="EmailAddress" type="email" />
+
+  <label for="PhotoUrl">Photo URL:</label>
+  <input id="PhotoUrl" formControlName="PhotoUrl" type="file" />
+
+  <label for="IdCard">ID Card:</label>
+  <input id="IdCard" formControlName="IdCard" type="text" />
+
+  <label for="PhoneNumber">Phone Number:</label>
+  <input id="PhoneNumber" formControlName="PhoneNumber" type="number" />
+
+  <label for="CategoryId">Category:</label>
+  <select id="CategoryId" formControlName="CategoryId">
+    <option *ngFor="let category of categories" [value]="category.CategoryId">{{ category.Name }}</option>
+  </select>
+
+  <div formArrayName="Times" class="times-container">
+    <div *ngFor="let time of timesArray.controls; let i=index" [formGroupName]="i" class="time-entry">
+      <label for="time{{i}}">Time {{i + 1}}:</label>
+      <select id="time{{i}}" formControlName="TimeId">
+        <option *ngFor="let time of times" [value]="time.TimeId">{{ time.Hour}}:{{time.Minute}}</option>
+      </select>
+      <button type="button" (click)="removeTime(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addTime()" class="add-time-button">Add Time</button>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,29 @@
+<app-header-registrar></app-header-registrar>
+<div class="service-list-container">
+  <h2>Lista de Serviços</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Tempo Estimado</th>
+        <th>Categoria</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let service of services">
+        <td>{{ service.Name }}</td>
+        <td>{{ service.Description }}</td>
+        <td>{{ service.Price | currency:'AOA ' }}</td>
+        <td>{{ service.EstimatedTime }} minutos</td>
+        <td>{{ getCategoryName(service.Category.CategoryId) }}</td>
+        <td>
+          <button (click)="deleteService(service.ServiceId)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

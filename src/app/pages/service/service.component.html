@@ -1,0 +1,78 @@
+<app-header></app-header>
+
+<div class="container">
+  <h2>Agendamento de Serviços</h2>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="Services">
+      <div *ngFor="let serviceForm of servicesFormArray.controls; let i = index" [formGroupName]="i">
+        <h3>Serviço {{i + 1}}</h3>
+        
+        <div formGroupName="Service">
+          <label>Categoria:
+            <select formControlName="CategoryId" (change)="onCategoryChange(i)">
+              <option value="">Selecione uma categoria</option>
+              <option *ngFor="let category of categories" [value]="category.CategoryId">
+                {{category.Name}}
+              </option>
+            </select>
+          </label>
+
+          <label>Serviço:
+            <select formControlName="ServiceId" (change)="onServiceChange(i)">
+              <option value="">Selecione um serviço</option>
+              <option *ngFor="let service of services" [value]="service.ServiceId">
+                {{service.Name}} - R$ {{service.Price}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div formGroupName="Professional">
+          <label>Profissional:
+            <select formControlName="ProfessionalId" (change)="onProfessionalChange(i)">
+              <option value="">Selecione um profissional</option>
+              <option *ngFor="let professional of professionals" [value]="professional.ProfessionalId">
+                {{professional.FirstName}} {{professional.LastName}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <label>Data:
+          <input type="date" formControlName="Date">
+        </label>
+
+        <div formGroupName="Time">
+          <label>Horário:
+            <select formControlName="TimeId">
+              <option value="">Selecione um horário</option>
+              <option *ngFor="let time of times" [value]="time.TimeId">
+                {{time.Hour}}:{{time.Minute < 10 ? '0' + time.Minute : time.Minute}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <button type="button" (click)="removeService(i)" *ngIf="servicesFormArray.length > 1">Remover Serviço</button>
+      </div>
+    </div>
+
+    <button type="button" (click)="addService()">Adicionar Serviço</button>
+
+    <label>Usuário:
+      <select formControlName="UserId">
+        <option value="">Selecione um usuário</option>
+        <option *ngFor="let user of users" [value]="user.UserId">
+          {{user.Username}}
+        </option>
+      </select>
+    </label>
+
+    <label>Preço Total:
+      <input type="number" formControlName="Price" readonly>
+    </label>
+
+    <button type="submit" [disabled]="!bookingForm.valid">Agendar</button>
+  </form>
+</div>

@@ -1,0 +1,69 @@
+<app-header-entrar></app-header-entrar>
+
+<div class="dashboard-container">
+  <h1>Dashboard do Administrador</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label for="FirstName">First Name:</label>
+    <input id="FirstName" formControlName="FirstName" type="text" />
+  
+    <label for="LastName">Last Name:</label>
+    <input id="LastName" formControlName="LastName" type="text" />
+  
+    <label for="EmailAddress">Email Address:</label>
+    <input id="EmailAddress" formControlName="EmailAddress" type="email" />
+  
+    <label for="PhotoUrl">Photo URL:</label>
+    <input id="PhotoUrl" formControlName="PhotoUrl" type="file" />
+  
+    <label for="IdCard">ID Card:</label>
+    <input id="IdCard" formControlName="IdCard" type="text" />
+  
+    <label for="PhoneNumber">Phone Number:</label>
+    <input id="PhoneNumber" formControlName="PhoneNumber" type="number" />
+
+    <label for="Username">Username:</label>
+    <input id="Username" formControlName="Username" type="text" />
+
+    <label for="Password">Password:</label>
+    <input id="Password" formControlName="Password" type="password" />
+
+    <label for="ConfirmPassword">Confirm Password:</label>
+    <input id="ConfirmPassword" formControlName="ConfirmPassword" type="password" />
+
+    <label for="Role">Role:</label>
+    <input id="Role" formControlName="Role" type="text" />
+  
+    <button type="submit">Submit</button>
+  </form>
+  <div class="user-list">
+    <h2>Lista de Usuários</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.UserId }}</td>
+          <td>{{ user.FirstName }}</td>
+          <td>{{ user.LastName }}</td>
+          <td>{{ user.EmailAddress }}</td>
+          <td>{{ user.PhoneNumber }}</td>
+          <td [ngClass]="user.Status.toLowerCase()">{{ user.Status }}</td>
+          <td>
+            <button (click)="toggleUserStatus(user)" [ngClass]="user.Status.toLowerCase()">
+              {{ user.Status === 'Active' ? 'Desativar' : 'Ativar' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<app-header-registrar></app-header-registrar>
+
+<div class="service-form-container">
+  <h2>Criar Novo Serviço</h2>
+  
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="Name">Nome:</label>
+      <input id="Name" formControlName="Name" type="text" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Description">Descrição:</label>
+      <textarea id="Description" formControlName="Description" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="Image">Imagem:</label>
+      <input id="Image" formControlName="Image" type="file" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Price">Preço:</label>
+      <input id="Price" formControlName="Price" type="number" step="0.01" required>
+    </div>
+
+    <div class="form-group">
+      <label for="EstimatedTime">Tempo Estimado (minutos):</label>
+      <input id="EstimatedTime" formControlName="EstimatedTime" type="number" required>
+    </div>
+
+    <div class="form-group">
+      <label for="CategoryId">Categoria:</label>
+      <select id="CategoryId" formControlName="CategoryId" required>
+        <option value="">Selecione uma categoria</option>
+        <option *ngFor="let category of categories" [value]="category.CategoryId">
+          {{ category.Name }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!serviceForm.valid">Criar Serviço</button>
+  </form>
+</div>

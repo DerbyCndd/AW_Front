@@ -1,0 +1,39 @@
+<app-header-registrar></app-header-registrar>
+
+<div class="professional-list-container">
+  <h2>Lista de Profissionais</h2>
+
+  <table class="professional-table">
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Categoria</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let professional of professionals">
+        <td><img [src]="professional.PhotoUrl" alt="Foto do profissional" class="professional-photo"></td>
+        <td>{{ professional.FirstName }} {{ professional.LastName }}</td>
+        <td>{{ professional.EmailAddress }}</td>
+        <td>{{ professional.EmailAddress }}</td>
+        <td>{{ professional.Category.Name }}</td>
+        <td>
+          <button class="edit-btn">Editar</button>
+          <button class="delete-btn" (click)="confirmDelete(professional)">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="delete-confirmation" *ngIf="professionalToDelete">
+  <div class="delete-confirmation-content">
+    <p>Tem certeza que deseja remover {{ professionalToDelete.FirstName }} {{ professionalToDelete.LastName }}?</p>
+    <button class="confirm-btn" (click)="deleteProfessional()">Confirmar</button>
+    <button class="cancel-btn" (click)="cancelDelete()">Cancelar</button>
+  </div>
+</div>

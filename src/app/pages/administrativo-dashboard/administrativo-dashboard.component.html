@@ -1,0 +1,41 @@
+<app-header-registrar></app-header-registrar>
+<div class="dashboard-container">
+  <div class="revenue-section">
+    <h2>Faturamento</h2>
+    <div class="revenue-grid">
+      <div class="revenue-item">
+        <h3>Hoje</h3>
+        <p>{{ todayRevenue | currency:'AOA' }}</p>
+      </div>
+      <div class="revenue-item">
+        <h3>Ontem</h3>
+        <p>{{ yesterdayRevenue | currency:'AOA ' }}</p>
+      </div>
+      <div class="revenue-item">
+        <h3>Mês Atual</h3>
+        <p>{{ currentMonthRevenue | currency:'AOA ' }}</p>
+      </div>
+      <div class="revenue-item">
+        <h3>Mês Passado</h3>
+        <p>{{ lastMonthRevenue | currency:'AOA ' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-professionals-section">
+    <h2>Top 5 Profissionais</h2>
+    <ul>
+      <li *ngFor="let professional of topProfessionals">
+        {{ professional.FirstName }} - {{ professional.Category.Name }} solicitações
+      </li>
+    </ul>
+  </div>
+
+  <div class="least-requested-service-section">
+    <h2>Serviço Menos Solicitado</h2>
+    <div *ngIf="leastRequestedService">
+      <h3>{{ leastRequestedService.Name }}</h3>
+      <p>Solicitações: {{ leastRequestedService.Name }}</p>
+    </div>
+  </div>
+</div>

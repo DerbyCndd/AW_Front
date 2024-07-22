@@ -1,0 +1,71 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+
+  label {
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+  input, select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .times-container {
+    display: flex;
+    flex-direction: column;
+
+    .time-entry {
+      display: flex;
+      align-items: center;
+
+      input, select {
+        flex-grow: 1;
+      }
+
+      button {
+        margin-left: 10px;
+      }
+    }
+
+    .add-time-button {
+      align-self: flex-end;
+      margin-top: 10px;
+      background-color: #28a745;
+
+      &:hover {
+        background-color: #218838;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="imagem">
+        <img [src]="image" alt="">
+    </div>
+    <div class="title">
+        {{title}}
+    </div>
+    <div class="price">
+        {{price}}kzs <span>por serviço</span>
+    </div>
+    <button>Mais Informações</button>
+    <div class="des">
+        {{desc}}
+    </div>
+    <div class="list">
+        @for (item of serviceList; track $index) {
+            <div>
+                {{item}}
+            </div>
+        }
+    </div>
+</div>

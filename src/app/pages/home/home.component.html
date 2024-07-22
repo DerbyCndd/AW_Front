@@ -1,0 +1,46 @@
+<app-header></app-header>
+<section class="hero">
+  <div class="hero-info">
+    <h1>
+      Experimente a Verdadeira Elegância
+    </h1>
+    <p>
+      Nossos especialistas fornecem serviços de beleza de alto nível para fazer você parecer e se sentir melhor.
+    </p>
+    <button>Marque já!</button>
+  </div>
+  <div class="hero-image">
+    <img src="../assets/images/heroImage.jpeg" alt="">
+  </div>
+</section>
+
+<section class="section-services">
+<h1>Serviços e Preços</h1>
+<div>
+<app-cad-service
+  image = "../../../assets/images/card1.jpeg" 
+  title="Cabelo" 
+  [price]="50000"  
+  desc="Inclui limpeza, tonificação e hidratação. Perfeito para uma introdução aos cuidados básicos com a pele."
+  [serviceList]= "['Limpeza','Tonificação']" >
+</app-cad-service>
+
+<app-cad-service
+  image = "../../../assets/images/card2.jpeg" 
+  title="Tratamento da pele" 
+  [price]="15000"  
+  desc="Inclui limpeza, tonificação e hidratação. Perfeito para uma introdução aos cuidados básicos com a pele."
+  [serviceList]= "['Limpeza','Tonificação']" >
+</app-cad-service>
+
+<app-cad-service
+  image = "../../../assets/images/card3.webp" 
+  title="Unhas" 
+  [price]="10000"  
+  desc="Inclui limpeza, tonificação e hidratação. Perfeito para uma introdução aos cuidados básicos com a pele."
+  [serviceList]= "['Limpeza','Tonificação']" >
+</app-cad-service>
+
+</div>
+
+</section>
