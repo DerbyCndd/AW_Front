@@ -8,7 +8,7 @@ import { Booking } from '../Models/Booking';
 })
 export class BookingServiceService {
 
-  constructor(private http:HttpClient){
+  constructor(private http: HttpClient) {
 
 
   }

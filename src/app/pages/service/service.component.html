@@ -22,7 +22,7 @@
             <select formControlName="ServiceId" (change)="onServiceChange(i)">
               <option value="">Selecione um serviço</option>
               <option *ngFor="let service of services" [value]="service.ServiceId">
-                {{service.Name}} - R$ {{service.Price}}
+                {{service.Name}} - AOA {{service.Price}}
               </option>
             </select>
           </label>

@@ -5,19 +5,19 @@
     <div class="revenue-grid">
       <div class="revenue-item">
         <h3>Hoje</h3>
-        <p>{{ todayRevenue | currency:'AOA' }}</p>
+        <p>{{ TodayRevenue | currency:'AOA' }}</p>
       </div>
       <div class="revenue-item">
         <h3>Ontem</h3>
-        <p>{{ yesterdayRevenue | currency:'AOA ' }}</p>
+        <p>{{ YesterdayRevenue | currency:'AOA ' }}</p>
       </div>
       <div class="revenue-item">
         <h3>Mês Atual</h3>
-        <p>{{ currentMonthRevenue | currency:'AOA ' }}</p>
+        <p>{{ CurrentMonthRevenue | currency:'AOA ' }}</p>
       </div>
       <div class="revenue-item">
         <h3>Mês Passado</h3>
-        <p>{{ lastMonthRevenue | currency:'AOA ' }}</p>
+        <p>{{ LastMonthRevenue | currency:'AOA ' }}</p>
       </div>
     </div>
   </div>
@@ -25,17 +25,59 @@
   <div class="top-professionals-section">
     <h2>Top 5 Profissionais</h2>
     <ul>
-      <li *ngFor="let professional of topProfessionals">
-        {{ professional.FirstName }} - {{ professional.Category.Name }} solicitações
+      <li *ngFor="let professional of TopProfessionals">
+        {{ professional.FirstName }} {{ professional.LastName }} - {{ professional.Category.Name }}
       </li>
     </ul>
   </div>
 
   <div class="least-requested-service-section">
     <h2>Serviço Menos Solicitado</h2>
-    <div *ngIf="leastRequestedService">
-      <h3>{{ leastRequestedService.Name }}</h3>
-      <p>Solicitações: {{ leastRequestedService.Name }}</p>
+    <div *ngIf="LeastRequestedService">
+      <h3>{{ LeastRequestedService.Name }}</h3>
+      <p>Descrição: {{ LeastRequestedService.Description }}</p>
     </div>
+    <p *ngIf="!LeastRequestedService">Nenhum serviço encontrado.</p>
+  </div>
+
+  <div class="bookings-section">
+    <h2>Marcações</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Preço</th>
+          <th>Status</th>
+          <th>Data de Ativação</th>
+          <th>Usuário</th>
+          <th>Serviços</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of Bookings">
+          <td>{{ booking.BookingId }}</td>
+          <td>{{ booking.Price | currency:'AOA ' }}</td>
+          <td>{{ booking.Status }}</td>
+          <td>{{ booking.ActivationDate | date }}</td>
+          <td>{{ booking.User.FirstName }} {{ booking.User.LastName }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let service of booking.Services">
+                {{ service.Service.Name }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <select (change)="updateBookingStatus(booking, $event)">
+              <option value="Pendente" [selected]="booking.Status === 'Pendente'">Pendente</option>
+              <option value="Confirmado" [selected]="booking.Status === 'Confirmado'">Confirmado</option>
+              <option value="Concluído" [selected]="booking.Status === 'Concluído'">Concluído</option>
+              <option value="Cancelado" [selected]="booking.Status === 'Cancelado'">Cancelado</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
